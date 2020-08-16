@@ -1,0 +1,12 @@
+__pycache__/
+.DS_Store
+
+notebooks/*
+!EDA*.ipynb
+!Grad-CAM.ipynb
+
+logs/
+data/
+pickle/
+
+.vscode
