@@ -11,7 +11,7 @@ common:
         notebook: True
 
 model:
-    name: resnet50
+    name: resnet18
     n_channels: &channel 3
     n_classes: 264
     pretrained: True
@@ -26,7 +26,7 @@ model:
         batch_norm: 
             name: BatchNorm1d
             params:
-                num_features: 2048
+                num_features: 512
         drop:
             name: Dropout
             params:
@@ -34,7 +34,7 @@ model:
         linear:
             name: Linear
             params:
-                in_features: 2048
+                in_features: 512
                 out_features: 264
     metric:
 
@@ -89,7 +89,7 @@ data:
         n_channels: *channel
         loader:
             shuffle: False
-            batch_size: 32
+            batch_size: 64
             num_workers: 4
         transforms:
         tta:
@@ -108,4 +108,4 @@ scheduler:
     name: CosineAnnealingLR
     params:
         eta_min: 0.000001
-        T_max: 50
+        T_max: 10

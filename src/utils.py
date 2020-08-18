@@ -269,7 +269,7 @@ class Kaggle:
         meta['is_private'] = 'true'
         meta['enable_gpu'] = 'true'
         meta['enable_internet'] = 'false'
-        meta['dataset_sources'] = [f'narimatsu/sub-{self.slug}']
+        meta['dataset_sources'] = [f'narimatsu/sub-{self.slug}', 'shonenkov/birdcall-check']
         meta['competition_sources'] = [f'{self.compe_name}']
         meta['kernel_sources'] = []
 

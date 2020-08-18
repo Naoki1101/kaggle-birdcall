@@ -4,6 +4,7 @@ __pycache__/
 notebooks/*
 !EDA*.ipynb
 !Grad-CAM.ipynb
+!*_inference.ipynb
 
 logs/
 data/
