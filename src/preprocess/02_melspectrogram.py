@@ -49,13 +49,13 @@ def audio_to_melspectrogram(conf, audio):
     return spectrogram
 
 
-def show_melspectrogram(conf, mels, title='Log-frequency power spectrogram'):
-    librosa.display.specshow(mels, x_axis='time', y_axis='mel', 
-                             sr=conf.sampling_rate, hop_length=conf.hop_length,
-                            fmin=conf.fmin, fmax=conf.fmax)
-    plt.colorbar(format='%+2.0f dB')
-    plt.title(title)
-    plt.show()
+# def show_melspectrogram(conf, mels, title='Log-frequency power spectrogram'):
+#     librosa.display.specshow(mels, x_axis='time', y_axis='mel', 
+#                              sr=conf.sampling_rate, hop_length=conf.hop_length,
+#                             fmin=conf.fmin, fmax=conf.fmax)
+#     plt.colorbar(format='%+2.0f dB')
+#     plt.title(title)
+#     plt.show()
 
 
 def read_as_melspectrogram(conf, pathname, trim_long_data, debug_display=False):
@@ -63,7 +63,7 @@ def read_as_melspectrogram(conf, pathname, trim_long_data, debug_display=False):
     mels = audio_to_melspectrogram(conf, x)
     if debug_display:
         IPython.display.display(IPython.display.Audio(x, rate=conf.sampling_rate))
-        show_melspectrogram(conf, mels)
+        # show_melspectrogram(conf, mels)
     return mels
 
 
