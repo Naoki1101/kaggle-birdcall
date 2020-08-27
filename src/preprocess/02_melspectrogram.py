@@ -11,13 +11,11 @@ TRAIN_MEL_DIR = Path('../data/input/train_audio_mel/')
 
 # https://www.kaggle.com/daisukelab/cnn-2d-basic-solution-powered-by-fast-ai
 class conf:
+    duration = 5
     sampling_rate = 32_000
-    duration = 2
-    hop_length = 347*duration
+    n_mels = 128
     fmin = 20
     fmax = sampling_rate // 2
-    n_mels = 256
-    n_fft = n_mels * 20
     samples = sampling_rate * duration
 
 
@@ -40,8 +38,6 @@ def audio_to_melspectrogram(conf, audio):
     spectrogram = librosa.feature.melspectrogram(audio, 
                                                  sr=conf.sampling_rate,
                                                  n_mels=conf.n_mels,
-                                                 hop_length=conf.hop_length,
-                                                 n_fft=conf.n_fft,
                                                  fmin=conf.fmin,
                                                  fmax=conf.fmax)
     spectrogram = librosa.power_to_db(spectrogram)
@@ -49,13 +45,13 @@ def audio_to_melspectrogram(conf, audio):
     return spectrogram
 
 
-# def show_melspectrogram(conf, mels, title='Log-frequency power spectrogram'):
-#     librosa.display.specshow(mels, x_axis='time', y_axis='mel', 
-#                              sr=conf.sampling_rate, hop_length=conf.hop_length,
-#                             fmin=conf.fmin, fmax=conf.fmax)
-#     plt.colorbar(format='%+2.0f dB')
-#     plt.title(title)
-#     plt.show()
+def show_melspectrogram(conf, mels, title='Log-frequency power spectrogram'):
+    librosa.display.specshow(mels, x_axis='time', y_axis='mel', 
+                             sr=conf.sampling_rate, hop_length=conf.hop_length,
+                            fmin=conf.fmin, fmax=conf.fmax)
+    plt.colorbar(format='%+2.0f dB')
+    plt.title(title)
+    plt.show()
 
 
 def read_as_melspectrogram(conf, pathname, trim_long_data, debug_display=False):
@@ -63,7 +59,7 @@ def read_as_melspectrogram(conf, pathname, trim_long_data, debug_display=False):
     mels = audio_to_melspectrogram(conf, x)
     if debug_display:
         IPython.display.display(IPython.display.Audio(x, rate=conf.sampling_rate))
-        # show_melspectrogram(conf, mels)
+        show_melspectrogram(conf, mels)
     return mels
 
 
