@@ -82,8 +82,6 @@ def val_epoch(model, valid_loader, criterion, cfg):
         preds_col_idx = [i + cfg.model.n_classes * j for j in range(cfg.data.valid.tta.iter_num)]
         valid_preds_tta[:, i] = np.mean(valid_preds[:, preds_col_idx], axis=1).reshape(-1)
 
-    valid_preds_tta = 1 / (1 + np.exp(-valid_preds_tta))
-
     return valid_preds_tta, avg_val_loss
 
 

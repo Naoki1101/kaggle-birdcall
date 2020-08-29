@@ -7,14 +7,14 @@ common:
     drop:
         - miss_idx
     kaggle:
-        data: True
-        notebook: True
+        data: False
+        notebook: False
 
 model:
-    name: resnet50
+    name: resnet34
     n_channels: &channel 3
     n_classes: 264
-    epochs: 50
+    epochs: 30
     pretrained: True
     multi_gpu: True
     avgpool:
@@ -31,7 +31,7 @@ model:
         linear:
             name: Linear
             params:
-                in_features: 2048
+                in_features: 512
                 out_features: 512
         act:
             name: ReLU
@@ -104,7 +104,7 @@ data:
             iter_num: 1
 
 loss: 
-    name: CrossEntropyLoss
+    name: BCEWithLogitsLoss
     params: {}
 
 optimizer:
@@ -115,5 +115,4 @@ optimizer:
 scheduler:
     name: CosineAnnealingLR
     params:
-        eta_min: 0.000001
-        T_max: 50
+        T_max: 10
