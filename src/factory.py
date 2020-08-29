@@ -29,8 +29,8 @@ def get_loss(cfg):
     return loss_
 
 
-def get_dataloader(df, cfg):
-    dataset = CustomDataset(df, cfg)
+def get_dataloader(df, target_df, cfg):
+    dataset = CustomDataset(df, target_df, cfg)
     loader = DataLoader(dataset, **cfg.loader)
     return loader
 

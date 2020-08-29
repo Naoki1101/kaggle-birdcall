@@ -129,6 +129,7 @@ def main():
 
     with t.timer('data processing'):
         train_x['target'] = train_x['ebird_code'].map(bird_code)
+        target_df = pd.get_dummies(train_x['ebird_code'])
 
     with t.timer('make folds'):
         fold_df = factory.get_fold(cfg.validation, train_x, train_x[[cfg.common.target]])
@@ -140,10 +141,11 @@ def main():
         if cfg.common.drop is not None:
             drop_idx = factory.get_drop_idx(cfg.common.drop)
             train_x = train_x.drop(drop_idx, axis=0).reset_index(drop=True)
+            target_df = target_df.drop(drop_idx, axis=0).reset_index(drop=True)
             fold_df = fold_df.drop(drop_idx, axis=0).reset_index(drop=True)
 
     with t.timer('train model'):
-        result = train_model(run_name, train_x, fold_df, cfg)
+        result = train_model(run_name, train_x, target_df, fold_df, cfg)
     
     logging.disable(logging.FATAL)
     run_name_cv = f'{run_name}_{result["cv"]:.3f}'

@@ -47,5 +47,5 @@ def logloss(y_true, y_pred):
 # ===============
 # f1
 # ===============
-def f1_score(y_true, y_pred, average='micro'):
-    return metrics.f1_score(y_true, y_pred, average='micro')
+def f1_score(y_true, y_pred, average='macro'):
+    return metrics.f1_score(y_true, y_pred, average='macro')

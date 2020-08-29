@@ -87,7 +87,7 @@ def val_epoch(model, valid_loader, criterion, cfg):
     return valid_preds_tta, avg_val_loss
 
 
-def train_model(run_name, df, fold_df, cfg):
+def train_model(run_name, df, target_df, fold_df, cfg):
     oof = np.zeros((len(df), cfg.model.n_classes))
     cv = 0
 
@@ -96,10 +96,11 @@ def train_model(run_name, df, fold_df, cfg):
         logging.debug(f'\n========================== FOLD {fold_} ... ==========================\n')
 
         trn_x, val_x = df[fold_df[col] == 0], df[fold_df[col] > 0]
-        val_y = val_x[cfg.common.target]
+        trn_y, val_y = target_df[fold_df[col] == 0], target_df[fold_df[col] > 0]
+        # val_y = val_x[cfg.common.target]
 
-        train_loader = factory.get_dataloader(trn_x, cfg.data.train)
-        valid_loader = factory.get_dataloader(val_x, cfg.data.valid)
+        train_loader = factory.get_dataloader(trn_x, trn_y, cfg.data.train)
+        valid_loader = factory.get_dataloader(val_x, val_y, cfg.data.valid)
 
         model = factory.get_model(cfg).to(device)
         
@@ -109,7 +110,7 @@ def train_model(run_name, df, fold_df, cfg):
 
         best_epoch = -1
         best_val_score = -np.inf
-        mb = master_bar(range(cfg.data.train.epochs))
+        mb = master_bar(range(cfg.model.epochs))
 
         train_loss_list = []
         val_loss_list = []
@@ -122,7 +123,9 @@ def train_model(run_name, df, fold_df, cfg):
 
             valid_preds, avg_val_loss = val_epoch(model, valid_loader, criterion, cfg)
 
-            val_score = factory.get_metrics(cfg.common.metrics.name)(val_y, np.argmax(valid_preds, axis=1))
+            val_y_class = np.argmax(val_y.values, axis=1)
+            valid_preds_class = np.argmax(valid_preds, axis=1)
+            val_score = factory.get_metrics(cfg.common.metrics.name)(val_y_class, valid_preds_class)
 
             train_loss_list.append(avg_loss)
             val_loss_list.append(avg_val_loss)

@@ -10,15 +10,14 @@ import factory
 
 
 class CustomDataset(Dataset):
-    def __init__(self, df, cfg):
+    def __init__(self, df, target_df, cfg):
         super().__init__()
         self.cfg = cfg
         self.filenames = df['filename'].values
+        self.labels = target_df.values.astype(float)
         self.transforms = factory.get_transforms(self.cfg)
         self.is_train = cfg.is_train
-        if self.is_train:
-            self.ebird_code = df['ebird_code'].values
-            self.labels = df['target'].values
+        self.ebird_code = df['ebird_code'].values
 
     def __len__(self):
         return len(self.filenames)
@@ -33,10 +32,8 @@ class CustomDataset(Dataset):
             image = self.transforms(image=image)['image']
 
         image = cv2.resize(image, (self.cfg.img_size.height, self.cfg.img_size.width))
-        image = image.transpose(2, 0, 1).astype(np.float32)
+        image = image.transpose(2, 0, 1)
+        image = (image / 255.0).astype(np.float32)
 
-        if self.is_train:
-            label = self.labels[idx]
-            return image, label
-        else:
-            return image
+        label = self.labels[idx, :]
+        return image, label
