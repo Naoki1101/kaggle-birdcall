@@ -14,6 +14,7 @@ model:
     name: resnet50
     n_channels: &channel 3
     n_classes: 264
+    epochs: 50
     pretrained: True
     multi_gpu: True
     avgpool:
@@ -67,7 +68,6 @@ data:
             width: &wsize 224
             height: &hsize 547
         n_channels: *channel
-        epochs: 50
         loader:
             shuffle: True
             batch_size: 64
