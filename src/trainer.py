@@ -95,7 +95,6 @@ def train_model(run_name, df, target_df, fold_df, cfg):
 
         trn_x, val_x = df[fold_df[col] == 0], df[fold_df[col] > 0]
         trn_y, val_y = target_df[fold_df[col] == 0], target_df[fold_df[col] > 0]
-        # val_y = val_x[cfg.common.target]
 
         train_loader = factory.get_dataloader(trn_x, trn_y, cfg.data.train)
         valid_loader = factory.get_dataloader(val_x, val_y, cfg.data.valid)

@@ -7,40 +7,28 @@ common:
     drop:
         - miss_idx
     kaggle:
-        data: False
-        notebook: False
+        data: True
+        notebook: True
 
 model:
-    name: efficientnet_b3
+    name: resnet34
     n_channels: &channel 3
     n_classes: 264
-    epochs: 10
+    epochs: 50
     pretrained: True
     multi_gpu: True
     avgpool:
         name: GeM
         params: {}
     head:
-        act1:
+        act:
             name: ReLU
             params: {}
-        drop1:
+        drop:
             name: Dropout
             params:
                 p: 0.5
-        linear1:
-            name: Linear
-            params:
-                in_features: 1536
-                out_features: 512
-        act2:
-            name: ReLU
-            params: {}
-        drop2:
-            name: Dropout
-            params:
-                p: 0.5
-        linear2:
+        linear:
             name: Linear
             params:
                 in_features: 512
@@ -70,7 +58,7 @@ data:
         n_channels: *channel
         loader:
             shuffle: True
-            batch_size: 32
+            batch_size: 64
             num_workers: 4
         transforms:
         mixup: False
