@@ -6,19 +6,19 @@ import torch.nn as nn
 sys.path.append('../src')
 import layer
 # from . import efficientnet, resnet, resnest, senet, ghostnet
-from . import resnet
+from . import efficientnet, resnet
 
 
 model_encoder = {
     # efficientnet
-    # 'efficientnet_b0': efficientnet.efficientnet_b0,
-    # 'efficientnet_b1': efficientnet.efficientnet_b1,
-    # 'efficientnet_b2': efficientnet.efficientnet_b2,
-    # 'efficientnet_b3': efficientnet.efficientnet_b3,
-    # 'efficientnet_b4': efficientnet.efficientnet_b4,
-    # 'efficientnet_b5': efficientnet.efficientnet_b5,
-    # 'efficientnet_b6': efficientnet.efficientnet_b6,
-    # 'efficientnet_b7': efficientnet.efficientnet_b7,
+    'efficientnet_b0': efficientnet.efficientnet_b0,
+    'efficientnet_b1': efficientnet.efficientnet_b1,
+    'efficientnet_b2': efficientnet.efficientnet_b2,
+    'efficientnet_b3': efficientnet.efficientnet_b3,
+    'efficientnet_b4': efficientnet.efficientnet_b4,
+    'efficientnet_b5': efficientnet.efficientnet_b5,
+    'efficientnet_b6': efficientnet.efficientnet_b6,
+    'efficientnet_b7': efficientnet.efficientnet_b7,
 
     # resnet
     'resnet18': resnet.resnet18,
