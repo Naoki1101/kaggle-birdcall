@@ -5,8 +5,7 @@ import torch.nn as nn
 
 sys.path.append('../src')
 import layer
-# from . import efficientnet, resnet, resnest, senet, ghostnet
-from . import efficientnet, resnet
+from . import efficientnet, resnet, resnest, senet
 
 
 model_encoder = {
@@ -32,18 +31,15 @@ model_encoder = {
     'wide_resnet101_2': resnet.wide_resnet101_2,
 
     # resnest
-    # 'resnest50': resnest.resnest50,
-    # 'resnest50_frelu': resnest.resnest50_frelu,
-    # 'resnest101': resnest.resnest101,
-    # 'resnest200': resnest.resnest200,
-    # 'resnest269': resnest.resnest269,
+    'resnest50': resnest.resnest50,
+    'resnest50_frelu': resnest.resnest50_frelu,
+    'resnest101': resnest.resnest101,
+    'resnest200': resnest.resnest200,
+    'resnest269': resnest.resnest269,
 
     # senet
-    # 'se_resnext50_32x4d': senet.se_resnext50_32x4d,
-    # 'se_resnext101_32x4d': senet.se_resnext101_32x4d,
-
-    # ghostnet
-    # 'ghostnet': ghostnet.ghost_net
+    'se_resnext50_32x4d': senet.se_resnext50_32x4d,
+    'se_resnext101_32x4d': senet.se_resnext101_32x4d,
 }
 
 
