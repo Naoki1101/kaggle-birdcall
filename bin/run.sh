@@ -20,6 +20,9 @@ cd ../src
 
 python train.py -m 'senet50_001' -c 'epoch=30'
 
+python train.py -m 'resnest50_001' -c 'epoch=30'
+python train.py -m 'resnest50_frelu_001' -c 'epoch=30'
+
 # python train.py -m 'efficientnetb3_001' -c 'test'
 # python train.py -m 'efficientnetb3_002' -c 'epoch=30'
 

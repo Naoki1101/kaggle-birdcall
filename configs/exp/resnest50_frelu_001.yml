@@ -58,7 +58,7 @@ data:
         n_channels: *channel
         loader:
             shuffle: True
-            batch_size: 64
+            batch_size: 32
             num_workers: 4
         transforms:
         mixup: False
