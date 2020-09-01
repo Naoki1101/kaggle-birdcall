@@ -18,9 +18,10 @@ cd ../src
 # python train.py -m 'resnet50_003' -c 'mod head'
 # python train.py -m 'resnet50_004' -c 'epoch=30'
 
-# python train.py -m 'senet50_001' -c 'epoch=30'
+# python train.py -m 'se_resnext50_32x4d_001' -c 'epoch=30'
+python train.py -m 'se_resnext50_32x4d_002' -c 'epoch=50'
 
-python train.py -m 'resnest50_001' -c 'epoch=30'
+# python train.py -m 'resnest50_001' -c 'epoch=30'
 # python train.py -m 'resnest50_frelu_001' -c 'epoch=30'
 
 # python train.py -m 'efficientnetb3_001' -c 'test'
