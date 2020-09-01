@@ -15,7 +15,6 @@ _model_sha256 = {name: checksum for checksum, name in [
     ('0cc87c48', 'resnest269'),
     ]}
 
-
 class DropBlock2D(object):
     def __init__(self, *args, **kwargs):
         raise NotImplementedError
