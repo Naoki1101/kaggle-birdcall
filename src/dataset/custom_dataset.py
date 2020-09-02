@@ -57,7 +57,7 @@ class CustomDataset(Dataset):
                                  sr=conf.sampling_rate,
                                  mono=True,
                                  res_type='kaiser_fast')
-        self.noise = noise[360.0 * conf.sampling_rate: 420 * conf.sampling_rate]
+        self.noise = noise[int(360.0 * conf.sampling_rate): int(420.0 * conf.sampling_rate)]
 
     def __len__(self):
         return len(self.filenames)
