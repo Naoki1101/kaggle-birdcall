@@ -53,11 +53,9 @@ class CustomDataset(Dataset):
         self.is_train = cfg.is_train
         self.ebird_code = df['ebird_code'].values
         
-        noise, sr = librosa.load('../data/input/example_test_audio/BLKFR-10-CPL_20190611_093000.pt540.mp3',
-                                 sr=conf.sampling_rate,
-                                 mono=True,
-                                 res_type='kaiser_fast')
-        self.noise = noise[int(360.0 * conf.sampling_rate): int(420.0 * conf.sampling_rate)]
+        audio, sr = librosa.load('../data/input/example_noise/example_noise.wav',
+                                 sr=conf.sampling_rate)
+        self.noise = audio
 
     def __len__(self):
         return len(self.filenames)
@@ -85,7 +83,8 @@ class CustomDataset(Dataset):
             rand = np.random.rand()
             if rand >= 0.5:
                 m = np.random.randint(1, 10)
-                y += self.noise[:len(y)] * m
+                start = np.random.randint(len(self.noise) - conf.samples)
+                y += self.noise[start: start + conf.samples].astype(np.float32) * m
 
         melspec = librosa.feature.melspectrogram(y,
                                                  sr=conf.sampling_rate,
