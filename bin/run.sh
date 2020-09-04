@@ -23,7 +23,8 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_003' -c 'epoch=50, mixup'
 # python train.py -m 'se_resnext50_32x4d_004' -c 'epoch=30, noise'
 # python train.py -m 'se_resnext50_32x4d_005' -c 'epoch=50, noise'
-python train.py -m 'se_resnext50_32x4d_006' -c 'epoch=30, mod noise'
+# python train.py -m 'se_resnext50_32x4d_006' -c 'epoch=30, mod noise'
+python train.py -m 'se_resnext50_32x4d_007' -c 'epoch=30, mod noise'
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
 # python train.py -m 'resnest50_frelu_001' -c 'epoch=30'
