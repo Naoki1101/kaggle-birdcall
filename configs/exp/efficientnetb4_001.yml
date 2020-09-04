@@ -31,7 +31,7 @@ model:
         linear:
             name: Linear
             params:
-                in_features: 1536
+                in_features: 1792
                 out_features: 264
     metric:
 
