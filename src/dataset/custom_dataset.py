@@ -53,9 +53,13 @@ class CustomDataset(Dataset):
         self.is_train = cfg.is_train
         self.ebird_code = df['ebird_code'].values
         
-        audio, sr = librosa.load('../data/input/example_noise/example_noise.wav',
+        noise1, _ = librosa.load('../data/input/example_noise/example_noise.wav',
                                  sr=conf.sampling_rate)
-        self.noise = audio
+        noise2, _ = librosa.load('../data/input/example_noise/freesound_water_noise.wav',
+                                 sr=conf.sampling_rate)
+
+        self.noise1 = noise1
+        self.noise2 = noise2
 
     def __len__(self):
         return len(self.filenames)
@@ -74,17 +78,25 @@ class CustomDataset(Dataset):
             offset = padding // 2
             y = np.pad(y, (offset, conf.samples - len_y - offset), 'constant').astype(np.float32)
         elif len_y > conf.samples:
-            start = np.random.randint(len_y - conf.samples)
-            y = y[start: start + conf.samples].astype(np.float32)
+            y = y[:conf.samples].astype(np.float32)
         else:
             y = y.astype(np.float32)
 
-        if self.cfg.noise:
+        if self.cfg.shift:
             rand = np.random.rand()
             if rand >= 0.5:
-                m = np.random.randint(1, 10)
-                start = np.random.randint(len(self.noise) - conf.samples)
-                y += self.noise[start: start + conf.samples].astype(np.float32) * m
+                shift = np.random.randint(conf.samples)
+                y = np.roll(y, shift)
+
+        if self.cfg.noise:
+            rand = np.random.rand()
+            m = np.random.randint(1, 10)
+            if rand >= 0.5 and rand < 0.75:
+                start = np.random.randint(len(self.noise1) - conf.samples)
+                y += self.noise1[start: start + conf.samples].astype(np.float32) * m
+            elif rand >= 0.75:
+                start = np.random.randint(len(self.noise2) - conf.samples)
+                y += self.noise2[start: start + conf.samples].astype(np.float32) * m
 
         melspec = librosa.feature.melspectrogram(y,
                                                  sr=conf.sampling_rate,
