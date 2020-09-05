@@ -161,7 +161,7 @@ def main():
     with t.timer('notify'):
         if notify_params.line.token:
             process_minutes = t.get_processing_time()
-            message = f'''{model_name}\ncv: {result["cv"]:.3f}\ntime: {process_minutes:.2f}[h]'''
+            message = f'''{model_name}\ncv: {result["cv"]:.3f}\ntime: {process_minutes:.2f}[min]'''
             send_line(notify_params.line.token, message)
 
         if os.environ.get('NOTION_TOKEN'):

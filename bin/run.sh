@@ -34,7 +34,8 @@ cd ../src
 # python train.py -m 'efficientnetb3_002' -c 'epoch=30'
 # python train.py -m 'efficientnetb3_003' -c 'epoch=30, mixup, noise'
 
-python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
+# python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
+python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
 
 
 cd ../
