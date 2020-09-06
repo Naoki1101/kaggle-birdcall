@@ -37,7 +37,7 @@ cd ../src
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
-python train.py -m 'resnest50_002' -c 'epoch=30, mixup, noise, freesound_noise, shift'
+# python train.py -m 'resnest50_002' -c 'epoch=30, mixup, noise, freesound_noise, shift'
 # python train.py -m 'resnest50_frelu_001' -c 'epoch=30'
 
 
@@ -48,6 +48,7 @@ python train.py -m 'resnest50_002' -c 'epoch=30, mixup, noise, freesound_noise, 
 
 # python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
 # python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
+python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, freesound_noise, shift'
 
 
 cd ../
