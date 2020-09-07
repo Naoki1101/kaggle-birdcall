@@ -34,6 +34,7 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_010' -c 'epoch=30, mixup, noise, freesound_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_011' -c 'epoch=30, mixup, shift'
 # python train.py -m 'se_resnext50_32x4d_012' -c 'epoch=50, mixup, noise, freesound_noise, shift'
+python train.py -m 'se_resnext50_32x4d_013' -c 'epoch=30, mixup, noise, freesound_noise, shift, mod head'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
@@ -44,11 +45,9 @@ cd ../src
 # python train.py -m 'efficientnetb3_001' -c 'test'
 # python train.py -m 'efficientnetb3_002' -c 'epoch=30'
 # python train.py -m 'efficientnetb3_003' -c 'epoch=30, mixup, noise'
-
-
 # python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
 # python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
-python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, freesound_noise, shift'
+# python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, freesound_noise, shift'
 
 
 cd ../
