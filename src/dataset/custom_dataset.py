@@ -57,9 +57,12 @@ class CustomDataset(Dataset):
                                  sr=conf.sampling_rate)
         noise2, _ = librosa.load('../data/input/example_noise/freesound_water_noise.wav',
                                  sr=conf.sampling_rate)
+        noise3, _ = librosa.load('../data/input/example_noise/freesound_bus_noise.wav',
+                                 sr=conf.sampling_rate)
 
         self.noise1 = noise1
         self.noise2 = noise2
+        self.noise3 = noise3
 
     def __len__(self):
         return len(self.filenames)
@@ -90,11 +93,17 @@ class CustomDataset(Dataset):
 
         if self.cfg.noise:
             rand = np.random.rand()
-            m = np.random.randint(1, 10)
-            if rand >= 0.5 and rand < 0.75:
-                start = np.random.randint(len(self.noise1) - conf.samples)
-                y += self.noise1[start: start + conf.samples].astype(np.float32) * m
-            elif rand >= 0.75:
+            m = np.random.rand() * 10
+            # if rand >= 0.5 and rand < 0.7:
+            #     start = np.random.randint(len(self.noise1) - conf.samples)
+            #     y += self.noise1[start: start + conf.samples].astype(np.float32) * m
+            # elif rand >= 0.7 and rand < 0.85:
+            #     start = np.random.randint(len(self.noise2) - conf.samples)
+            #     y += self.noise2[start: start + conf.samples].astype(np.float32) * m
+            # elif rand >= 0.85:
+            #     start = np.random.randint(len(self.noise3) - conf.samples)
+            #     y += self.noise3[start: start + conf.samples].astype(np.float32) * m
+            if rand >= 0.5:
                 start = np.random.randint(len(self.noise2) - conf.samples)
                 y += self.noise2[start: start + conf.samples].astype(np.float32) * m
 
