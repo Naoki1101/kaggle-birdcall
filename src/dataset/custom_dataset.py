@@ -103,10 +103,10 @@ class CustomDataset(Dataset):
             # elif rand >= 0.85:
             #     start = np.random.randint(len(self.noise3) - conf.samples)
             #     y += self.noise3[start: start + conf.samples].astype(np.float32) * m
-            if rand >= 0.5 and rand < 0.75:
+            if rand >= 0.5 and rand < 0.70:
                 start = np.random.randint(len(self.noise1) - conf.samples)
                 y += self.noise1[start: start + conf.samples].astype(np.float32) * m
-            elif rand >= 0.75:
+            elif rand >= 0.70:
                 start = np.random.randint(len(self.noise2) - conf.samples)
                 y += self.noise2[start: start + conf.samples].astype(np.float32) * m
 
