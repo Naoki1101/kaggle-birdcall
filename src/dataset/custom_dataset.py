@@ -13,7 +13,7 @@ import factory
 class conf:
     duration = 5
     sampling_rate = 32_000
-    n_mels = 128
+    n_mels = 256
     fmin = 20
     fmax = sampling_rate // 2
     samples = sampling_rate * duration
@@ -93,20 +93,11 @@ class CustomDataset(Dataset):
 
         if self.cfg.noise:
             rand = np.random.rand()
-            m = np.random.rand() * 10
-            # if rand >= 0.5 and rand < 0.7:
-            #     start = np.random.randint(len(self.noise1) - conf.samples)
-            #     y += self.noise1[start: start + conf.samples].astype(np.float32) * m
-            # elif rand >= 0.7 and rand < 0.85:
-            #     start = np.random.randint(len(self.noise2) - conf.samples)
-            #     y += self.noise2[start: start + conf.samples].astype(np.float32) * m
-            # elif rand >= 0.85:
-            #     start = np.random.randint(len(self.noise3) - conf.samples)
-            #     y += self.noise3[start: start + conf.samples].astype(np.float32) * m
-            if rand >= 0.5 and rand < 0.70:
+            m = np.random.randint(1, 10)
+            if rand >= 0.5 and rand < 0.75:
                 start = np.random.randint(len(self.noise1) - conf.samples)
                 y += self.noise1[start: start + conf.samples].astype(np.float32) * m
-            elif rand >= 0.70:
+            elif rand >= 0.75:
                 start = np.random.randint(len(self.noise2) - conf.samples)
                 y += self.noise2[start: start + conf.samples].astype(np.float32) * m
 
