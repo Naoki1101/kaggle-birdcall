@@ -38,7 +38,7 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_014' -c 'epoch=30, mixup, noise, water_noise, bus_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_015' -c 'epoch=30, mixup, water_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_016' -c 'epoch=30, mixup, water_noise, bus_noise, shift'
-python train.py -m 'se_resnext50_32x4d_017' -c 'epoch=30, mixup, noise, water_noise, shift'
+python train.py -m 'se_resnext50_32x4d_016' -c 'epoch=30, mixup, noise, water_noise, shift'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
