@@ -13,7 +13,7 @@ import factory
 class conf:
     duration = 5
     sampling_rate = 32_000
-    n_mels = 256
+    n_mels = 128
     fmin = 20
     fmax = sampling_rate // 2
     samples = sampling_rate * duration
