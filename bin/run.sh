@@ -58,7 +58,7 @@ python train.py -m 'se_resnext50_32x4d_021' -c 'epoch=30, mixup, noise, water_no
 # python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
 # python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
 # python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, water_noise, shift'
-python train.py -m 'efficientnetb4_004' -c 'epoch=30, mixup, shift'
+# python train.py -m 'efficientnetb4_004' -c 'epoch=30, mixup, shift'
 
 
 cd ../
