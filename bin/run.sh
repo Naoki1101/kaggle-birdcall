@@ -40,8 +40,11 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_016' -c 'epoch=30, mixup, water_noise, bus_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_016' -c 'epoch=30, mixup, noise, water_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_016' -c 'epoch=30, mixup, noise, water_noise, shift, n_mels=256'
-python train.py -m 'se_resnext50_32x4d_017' -c 'epoch=30, mixup, noise, water_noise, shift'
-python train.py -m 'se_resnext50_32x4d_018' -c 'epoch=30, mixup, shift'
+# python train.py -m 'se_resnext50_32x4d_017' -c 'epoch=30, mixup, noise, water_noise, shift'
+# python train.py -m 'se_resnext50_32x4d_018' -c 'epoch=30, mixup, shift'
+python train.py -m 'se_resnext50_32x4d_019' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2021'
+python train.py -m 'se_resnext50_32x4d_020' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2022'
+python train.py -m 'se_resnext50_32x4d_021' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2023'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
@@ -55,6 +58,7 @@ python train.py -m 'se_resnext50_32x4d_018' -c 'epoch=30, mixup, shift'
 # python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
 # python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
 # python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, water_noise, shift'
+python train.py -m 'efficientnetb4_004' -c 'epoch=30, mixup, shift'
 
 
 cd ../
