@@ -59,10 +59,13 @@ class CustomDataset(Dataset):
                                  sr=conf.sampling_rate)
         noise3, _ = librosa.load('../data/input/example_noise/freesound_bus_noise.wav',
                                  sr=conf.sampling_rate)
+        noise4, _ = librosa.load('../data/input/example_noise/freesound_walk_noise.wav',
+                                 sr=conf.sampling_rate)
 
         self.noise1 = noise1
         self.noise2 = noise2
         self.noise3 = noise3
+        self.noise4 = noise4
 
     def __len__(self):
         return len(self.filenames)
@@ -94,12 +97,21 @@ class CustomDataset(Dataset):
         if self.cfg.noise:
             rand = np.random.rand()
             m = np.random.randint(1, 10)
-            if rand >= 0.5 and rand < 0.75:
+            if rand >= self.cfg.noise.sample.th[0] and rand < self.cfg.noise.sample.th[1]:
                 start = np.random.randint(len(self.noise1) - conf.samples)
                 y += self.noise1[start: start + conf.samples].astype(np.float32) * m
-            elif rand >= 0.75:
+
+            elif rand >= self.cfg.noise.water.th[0] and rand < self.cfg.noise.water.th[1]:
                 start = np.random.randint(len(self.noise2) - conf.samples)
                 y += self.noise2[start: start + conf.samples].astype(np.float32) * m
+
+            elif rand >= self.cfg.noise.bus.th[0] and rand < self.cfg.noise.bus.th[1]:
+                start = np.random.randint(len(self.noise3) - conf.samples)
+                y += self.noise3[start: start + conf.samples].astype(np.float32) * m
+
+            elif rand >= self.cfg.noise.walk.th[0] and rand < self.cfg.noise.walk.th[1]:
+                start = np.random.randint(len(self.noise4) - conf.samples)
+                y += self.noise4[start: start + conf.samples].astype(np.float32) * m
 
         melspec = librosa.feature.melspectrogram(y,
                                                  sr=conf.sampling_rate,

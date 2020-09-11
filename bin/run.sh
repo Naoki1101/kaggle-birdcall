@@ -42,9 +42,10 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_016' -c 'epoch=30, mixup, noise, water_noise, shift, n_mels=256'
 # python train.py -m 'se_resnext50_32x4d_017' -c 'epoch=30, mixup, noise, water_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_018' -c 'epoch=30, mixup, shift'
-python train.py -m 'se_resnext50_32x4d_019' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2021'
-python train.py -m 'se_resnext50_32x4d_020' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2022'
-python train.py -m 'se_resnext50_32x4d_021' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2023'
+# python train.py -m 'se_resnext50_32x4d_019' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2021'
+# python train.py -m 'se_resnext50_32x4d_020' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2022'
+# python train.py -m 'se_resnext50_32x4d_021' -c 'epoch=30, mixup, noise, water_noise, shift, seed=2023'
+python train.py -m 'se_resnext50_32x4d_022' -c 'epoch=30, mixup, noise, water_noise, walk_noise, shift'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'

@@ -7,3 +7,4 @@ cd ../src
 # python preprocess/05_create_exsample_test.py
 # python preprocess/06_extract_freesound_water_noise.py
 # python preprocess/07_extract_freesound_bus_noise.py
+python preprocess/08_extract_freesound_walk_noise.py
