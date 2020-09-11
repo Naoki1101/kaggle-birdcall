@@ -61,11 +61,14 @@ class CustomDataset(Dataset):
                                  sr=conf.sampling_rate)
         noise4, _ = librosa.load('../data/input/example_noise/freesound_walk_noise.wav',
                                  sr=conf.sampling_rate)
+        noise5, _ = librosa.load('../data/input/example_noise/freesound_rain_noise.wav',
+                                 sr=conf.sampling_rate)
 
         self.noise1 = noise1
         self.noise2 = noise2
         self.noise3 = noise3
         self.noise4 = noise4
+        self.noise5 = noise5
 
     def __len__(self):
         return len(self.filenames)
@@ -97,21 +100,25 @@ class CustomDataset(Dataset):
         if self.cfg.noise:
             rand = np.random.rand()
             m = np.random.randint(1, 10)
-            if rand >= self.cfg.noise.sample.th[0] and rand < self.cfg.noise.sample.th[1]:
+            if rand >= self.cfg.noise.sample.th[0] and rand < self.cfg.noise.sample.th[1] and hasattr(self.cfg.noise, 'sample'):
                 start = np.random.randint(len(self.noise1) - conf.samples)
                 y += self.noise1[start: start + conf.samples].astype(np.float32) * m
 
-            elif rand >= self.cfg.noise.water.th[0] and rand < self.cfg.noise.water.th[1]:
+            elif rand >= self.cfg.noise.water.th[0] and rand < self.cfg.noise.water.th[1] and hasattr(self.cfg.noise, 'water'):
                 start = np.random.randint(len(self.noise2) - conf.samples)
                 y += self.noise2[start: start + conf.samples].astype(np.float32) * m
 
-            elif rand >= self.cfg.noise.bus.th[0] and rand < self.cfg.noise.bus.th[1]:
+            elif rand >= self.cfg.noise.bus.th[0] and rand < self.cfg.noise.bus.th[1] and hasattr(self.cfg.noise, 'bus'):
                 start = np.random.randint(len(self.noise3) - conf.samples)
                 y += self.noise3[start: start + conf.samples].astype(np.float32) * m
 
-            elif rand >= self.cfg.noise.walk.th[0] and rand < self.cfg.noise.walk.th[1]:
+            elif rand >= self.cfg.noise.walk.th[0] and rand < self.cfg.noise.walk.th[1] and hasattr(self.cfg.noise, 'walk'):
                 start = np.random.randint(len(self.noise4) - conf.samples)
                 y += self.noise4[start: start + conf.samples].astype(np.float32) * m
+
+            elif rand >= self.cfg.noise.rain.th[0] and rand < self.cfg.noise.rain.th[1] and hasattr(self.cfg.noise, 'rain'):
+                start = np.random.randint(len(self.noise5) - conf.samples)
+                y += self.noise5[start: start + conf.samples].astype(np.float32) * m
 
         melspec = librosa.feature.melspectrogram(y,
                                                  sr=conf.sampling_rate,
