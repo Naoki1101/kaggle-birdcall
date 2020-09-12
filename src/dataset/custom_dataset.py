@@ -104,9 +104,9 @@ class CustomDataset(Dataset):
             m = np.random.randint(1, 10)
 
             for noise_name in self.cfg.noise:
-                noise_params = getattr(self.cfg.noise, noise_name)
+                noise_threshhold = getattr(self.cfg.noise, noise_name)
                 noise_wave = self.noise_dict[noise_name]
-                if rand >= noise_params[0] and rand < noise_params[1]:
+                if rand >= noise_threshhold[0] and rand < noise_threshhold[1]:
                     start = np.random.randint(len(noise_wave) - conf.samples)
                     y += noise_wave[start: start + conf.samples].astype(np.float32) * m
 
