@@ -50,7 +50,8 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_024' -c 'epoch=30, mixup, noise, rain_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_025' -c 'epoch=30, mixup, water_noise, rain_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_026' -c 'epoch=30, mixup, noise, water_noise, rain_noise, shift'
-python train.py -m 'se_resnext50_32x4d_027' -c 'epoch=30, mixup, noise, water_noise, walk_noise, shift'
+# python train.py -m 'se_resnext50_32x4d_027' -c 'epoch=30, mixup, noise, water_noise, walk_noise, shift'
+python train.py -m 'se_resnext50_32x4d_028' -c 'epoch=30, mixup, noise, water_noise, shift, m=[3, 10]'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'

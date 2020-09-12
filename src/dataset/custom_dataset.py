@@ -101,7 +101,7 @@ class CustomDataset(Dataset):
 
         if self.cfg.noise:
             rand = np.random.rand()
-            m = np.random.randint(1, 10)
+            m = np.random.randint(3, 10)
 
             for noise_name in self.cfg.noise:
                 noise_threshhold = getattr(self.cfg.noise, noise_name)
