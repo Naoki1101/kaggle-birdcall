@@ -15,7 +15,7 @@ def main():
         audio_length_list.append(audio_length)
 
     df['length'] = audio_length_list
-    df = df[df['labels'] == 'Strum'][df['length'] >= 3].reset_index(drop=True)
+    df = df[df['labels'] == 'Motorcycle'][df['length'] >= 3].reset_index(drop=True)
 
     all_noise = []
     for idx in df.index:
@@ -25,7 +25,7 @@ def main():
 
     all_noise = np.concatenate(all_noise)
 
-    sf.write('../data/input/example_noise/freesound_strum_noise.wav', all_noise, samplerate=32_000)
+    sf.write('../data/input/example_noise/freesound_motorcycle_noise.wav', all_noise, samplerate=32_000)
 
 
 if __name__ == '__main__':

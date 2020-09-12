@@ -63,13 +63,16 @@ class CustomDataset(Dataset):
                                      sr=conf.sampling_rate)
         rain_noise, _ = librosa.load('../data/input/example_noise/freesound_rain_noise.wav',
                                      sr=conf.sampling_rate)
+        motorcycle, _ = librosa.load('../data/input/example_noise/freesound_motorcycle_noise.wav',
+                                     sr=conf.sampling_rate)
 
         self.noise_dict = {
             'sample': example_noise,
             'water': water_noise,
             'bus': bus_noise,
             'walk': walk_noise,
-            'rain': rain_noise
+            'rain': rain_noise,
+            'motorcycle': motorcycle
         }
 
     def __len__(self):
@@ -101,7 +104,7 @@ class CustomDataset(Dataset):
 
         if self.cfg.noise:
             rand = np.random.rand()
-            m = np.random.randint(3, 10)
+            m = np.random.randint(1, 10)
 
             for noise_name in self.cfg.noise:
                 noise_threshhold = getattr(self.cfg.noise, noise_name)

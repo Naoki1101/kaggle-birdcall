@@ -9,4 +9,4 @@ cd ../src
 # python preprocess/07_extract_freesound_bus_noise.py
 # python preprocess/08_extract_freesound_walk_noise.py
 # python preprocess/09_extract_freesound_rain_noise.py
-python preprocess/10_extract_freesound_strum_noise.py
+# python preprocess/10_extract_freesound_motorcycle_noise.py

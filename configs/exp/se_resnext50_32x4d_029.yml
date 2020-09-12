@@ -63,11 +63,11 @@ data:
         transforms:
         noise: 
             sample:
-                - 0.5
+                - 0.50
                 - 0.75
             water:
                 - 0.75
-                - 1.1
+                - 1.01
         shift: True
         mixup: True
     valid:
@@ -113,6 +113,7 @@ optimizer:
         lr: 0.001
 
 scheduler:
-    name: CosineAnnealingLR
+    name: ReduceLROnPlateau
     params:
-        T_max: *epochs
+        factor: 0.5
+        patience: 5

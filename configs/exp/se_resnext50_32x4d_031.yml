@@ -62,12 +62,12 @@ data:
             num_workers: 4
         transforms:
         noise: 
-            sample:
-                - 0.5
+            motorcycle:
+                - 0.50
                 - 0.75
             water:
                 - 0.75
-                - 1.1
+                - 1.01
         shift: True
         mixup: True
     valid:
