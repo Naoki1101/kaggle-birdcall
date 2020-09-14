@@ -56,7 +56,8 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_029' -c 'epoch=30, mixup, noise, water_noise, shift, ReduceLROnPlateau'
 # python train.py -m 'se_resnext50_32x4d_030' -c 'epoch=30, mixup, noise, motorcycle_noise, water_noise, shift'
 # python train.py -m 'se_resnext50_32x4d_031' -c 'epoch=30, mixup, motorcycle_noise, water_noise, shift'
-python train.py -m 'se_resnext50_32x4d_032' -c 'epoch=50, mixup, noise, water_noise, shift, ReduceLROnPlateau'
+# python train.py -m 'se_resnext50_32x4d_032' -c 'epoch=50, mixup, noise, water_noise, shift, ReduceLROnPlateau'
+python train.py -m 'se_resnext50_32x4d_033' -c 'epoch=30, mixup, noise, water_noise, shift, RandomBrightnessContrast'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
