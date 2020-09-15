@@ -1,11 +1,12 @@
 import sys
 
+import layer
 import torch
 import torch.nn as nn
 
+from . import efficientnet, resnest, resnet, senet
+
 sys.path.append('../src')
-import layer
-from . import efficientnet, resnet, resnest, senet
 
 
 model_encoder = {

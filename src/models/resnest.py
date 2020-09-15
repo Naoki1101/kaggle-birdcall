@@ -1,7 +1,7 @@
 import math
+
 import torch
 import torch.nn as nn
-
 from models.splat import SplAtConv2d
 
 # __all__ = ['resnest50', 'resnest101', 'resnest200', 'resnest269']

@@ -1,28 +1,28 @@
-import gc
-import os
-import sys
 import argparse
 import datetime
-from datetime import date
-from collections import Counter, defaultdict
-from pathlib import Path
+import gc
 import logging
+import os
+import sys
+import warnings
+from collections import Counter, defaultdict
+from datetime import date
+from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from tqdm import tqdm_notebook
-from logging import getLogger, Formatter, FileHandler, StreamHandler, INFO, DEBUG
 from sklearn.model_selection import train_test_split
+from tqdm import tqdm_notebook
+
+import factory
 import joblib
 import torch
+from trainer import train_model
+from utils import DataHandler, Kaggle, Notion, Timer, make_submission, seed_everything, send_line
 
 sys.path.append('../src')
-from utils import Timer, seed_everything, DataHandler, Kaggle, make_submission
-from utils import send_line, Notion
-from trainer import train_model
-import factory
 
-import warnings
 warnings.filterwarnings('ignore')
 
 
@@ -158,23 +158,23 @@ def main():
         if cfg.common.kaggle.notebook:
             kaggle.push_notebook()
 
-    with t.timer('notify'):
-        if notify_params.line.token:
-            process_minutes = t.get_processing_time()
-            message = f'''{model_name}\ncv: {result["cv"]:.3f}\ntime: {process_minutes:.2f}[min]'''
-            send_line(notify_params.line.token, message)
+    # with t.timer('notify'):
+    #     if notify_params.line.token:
+    #         process_minutes = t.get_processing_time()
+    #         message = f'''{model_name}\ncv: {result["cv"]:.3f}\ntime: {process_minutes:.2f}[min]'''
+    #         send_line(notify_params.line.token, message)
 
-        if os.environ.get('NOTION_TOKEN'):
-            notion = Notion(token=os.environ.get('NOTION_TOKEN'))
-            notion.set_url(url=notify_params.notion.url)
-            notion.insert_rows({
-                'name': run_name_cv,
-                'created': now,
-                'model': cfg.model.name,
-                'local_cv': round(result['cv'], 4),
-                'time': process_minutes,
-                'comment': comment
-            })
+    #     if os.environ.get('NOTION_TOKEN'):
+    #         notion = Notion(token=os.environ.get('NOTION_TOKEN'))
+    #         notion.set_url(url=notify_params.notion.url)
+    #         notion.insert_rows({
+    #             'name': run_name_cv,
+    #             'created': now,
+    #             'model': cfg.model.name,
+    #             'local_cv': round(result['cv'], 4),
+    #             'time': process_minutes,
+    #             'comment': comment
+    #         })
 
 
 if __name__ == '__main__':

@@ -1,11 +1,11 @@
 import math
+from collections import OrderedDict
+
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import init
-import torch
 from torch.utils import model_zoo
-from collections import OrderedDict
-
 
 pretrained_settings = {
     'se_resnext50_32x4d': {

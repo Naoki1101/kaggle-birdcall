@@ -1,21 +1,22 @@
 import gc
+import logging
 import sys
 import time
-import logging
-import numpy as np
-from fastprogress import master_bar, progress_bar
-
-import torch
-import torch.nn as nn
-from torch.autograd import Variable
 
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 
-sys.path.append('../src')
 import factory
+import torch
+import torch.nn as nn
+from fastprogress import master_bar, progress_bar
+from torch.autograd import Variable
+
+matplotlib.use('Agg')
+
+sys.path.append('../src')
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 

@@ -2,28 +2,8 @@ import torch
 import torch.nn as nn
 from torch.nn import AdaptiveAvgPool2d, AdaptiveMaxPool2d
 from torch.nn import functional as F
-from torch.nn.parameter import Parameter
 from torch.nn.modules.batchnorm import _BatchNorm
-
-
-class AvgPool(nn.Module):
-    def forward(self, x):
-        return F.avg_pool2d(x, x.shape[2:])
-
-
-class MaxPool(nn.Module):
-    def forward(self, x):
-        return F.max_pool2d(x, x.shape[2:])
-
-
-class AdaptiveConcatPool2d(nn.Module):
-    def __init__(self, sz=None):
-        super().__init__()
-        sz = sz or (1,1)
-        self.ap = nn.AdaptiveAvgPool2d(sz)
-        self.mp = nn.AdaptiveMaxPool2d(sz)
-    def forward(self, x):
-        return torch.cat([self.mp(x), self.ap(x)], 1)
+from torch.nn.parameter import Parameter
 
 
 # https://www.kaggle.com/c/bengaliai-cv19/discussion/123432

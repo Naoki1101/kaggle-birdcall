@@ -1,13 +1,15 @@
-import sys
-import cv2
 import random
-import librosa
+import sys
+
 import numpy as np
 import pandas as pd
+
+import cv2
+import factory
+import librosa
 from torch.utils.data import Dataset
 
 sys.path.append('../src')
-import factory
 
 
 class conf:
