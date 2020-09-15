@@ -62,7 +62,7 @@ cd ../src
 # python train.py -m 'se_resnext50_32x4d_035' -c 'epoch=30, mixup, noise, water_noise, shift, drop=0.'
 # python train.py -m 'se_resnext50_32x4d_036' -c 'epoch=30, mixup, noise, water_noise, shift, Mish'
 # python train.py -m 'se_resnext50_32x4d_037' -c 'epoch=30, mixup, noise, water_noise, shift, mixup<0.8'
-python train.py -m 'se_resnext50_32x4d_038' -c 'epoch=30, noise, water_noise, shift'
+# python train.py -m 'se_resnext50_32x4d_038' -c 'epoch=30, noise, water_noise, shift'
 
 
 # python train.py -m 'resnest50_001' -c 'epoch=30'
@@ -77,9 +77,3 @@ python train.py -m 'se_resnext50_32x4d_038' -c 'epoch=30, noise, water_noise, sh
 # python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
 # python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, water_noise, shift'
 # python train.py -m 'efficientnetb4_004' -c 'epoch=30, mixup, shift'
-
-
-cd ../
-git add -A
-git commit -m '...'
-git push origin master
