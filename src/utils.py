@@ -223,6 +223,7 @@ class Kaggle:
         self.slug = re.sub('[_.]', '-', run_name)
         self.log_dir = f'../logs/{run_name}'
         self.notebook_dir = f'../notebooks/{run_name}'
+        self.username = 'narimatsu'
 
     def submit(self, comment):
         cmd = f'kaggle competitions submit -c {self.compe_name} -f ../data/output/{self.run_name}.csv  -m "{comment}"'
@@ -271,9 +272,23 @@ class Kaggle:
         meta['enable_gpu'] = 'true'
         meta['enable_internet'] = 'false'
         if 'efficientnet' in self.run_name:
-            meta['dataset_sources'] = [f'narimatsu/sub-{self.slug}', 'shonenkov/birdcall-check', 'hmendonca/efficientnet-pytorch']
+            meta['dataset_sources'] = [
+                f'{self.username}/sub-{self.slug}', 
+                'shonenkov/birdcall-check', 
+                'hmendonca/efficientnet-pytorch'
+            ]
+        elif 'final' in self.run_name:
+            meta['dataset_sources'] = [
+                f'{self.username}/sub-birdcall-final-001',
+                f'{self.username}/sub-birdcall-final-002',
+                f'{self.username}/sub-birdcall-final-003',
+                'shonenkov/birdcall-check'
+            ]
         else:
-            meta['dataset_sources'] = [f'narimatsu/sub-{self.slug}', 'shonenkov/birdcall-check']
+            meta['dataset_sources'] = [
+                f'{self.username}/sub-{self.slug}', 
+                'shonenkov/birdcall-check'
+            ]
         meta['competition_sources'] = [f'{self.compe_name}']
         meta['kernel_sources'] = []
 
@@ -299,6 +314,11 @@ class Kaggle:
         elif 'resnest' in self.run_name:
             shutil.copy(
                 '../notebooks/resnest_inference.ipynb', 
+                f'{self.notebook_dir}/sub_{self.run_name}.ipynb'
+            )
+        elif 'final' in self.run_name:
+            shutil.copy(
+                '../notebooks/final_inference.ipynb', 
                 f'{self.notebook_dir}/sub_{self.run_name}.ipynb'
             )
 
