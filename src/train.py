@@ -47,7 +47,10 @@ cfg.update(dh.load(f'../configs/exp/{options.model}.yml'))
 comment = options.comment
 now = datetime.datetime.now()
 model_name = options.model
-run_name = f'{model_name}_{now:%Y%m%d%H%M%S}'
+if 'final' not in model_name:
+    run_name = f'{model_name}_{now:%Y%m%d%H%M%S}'
+else:
+    run_name = f'birdcall_{model_name}'
 notify_params = dh.load(options.notify)
 
 logger_path = Path(f'../logs/{run_name}')
@@ -148,7 +151,10 @@ def main():
         result = train_model(run_name, train_x, target_df, fold_df, cfg)
     
     logging.disable(logging.FATAL)
-    run_name_cv = f'{run_name}_{result["cv"]:.3f}'
+    if 'final' not in model_name:
+        run_name_cv = f'{run_name}_{result["cv"]:.3f}'
+    else:
+        run_name_cv = run_name
     logger_path.rename(f'../logs/{run_name_cv}')
 
     with t.timer('kaggle api'):
