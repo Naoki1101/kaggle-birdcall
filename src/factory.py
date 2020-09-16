@@ -9,7 +9,6 @@ import loss
 import metrics
 import torch
 import torch.nn as nn
-import transform as custom_album
 import validation
 from dataset.custom_dataset import CustomDataset
 from models.custom_model import CustomModel
@@ -59,8 +58,6 @@ def get_transforms(cfg):
     def get_object(transform):
         if hasattr(album, transform.name):
             return getattr(album, transform.name)
-        elif hasattr(custom_album, transform.name):
-            return getattr(custom_album, transform.name)
         else:
             return eval(transform.name)
     if cfg.transforms:
