@@ -1,6 +1,16 @@
 cd ../src
 
+########################################################
+# Final submission
+########################################################
+python train.py -m 'final_001' -c 'model1'
+python train.py -m 'final_002' -c 'model2'
+python train.py -m 'final_003' -c 'model3'
 
+
+########################################################
+# Experiments
+########################################################
 # python train.py -m 'resnet18_001' -c 'test'
 # python train.py -m 'resnet18_002' -c 'epoch=10'
 # python train.py -m 'resnet18_003' -c 'BCEWithLogitsLoss'
@@ -73,6 +83,8 @@ cd ../src
 # python train.py -m 'efficientnetb3_001' -c 'test'
 # python train.py -m 'efficientnetb3_002' -c 'epoch=30'
 # python train.py -m 'efficientnetb3_003' -c 'epoch=30, mixup, noise'
+
+
 # python train.py -m 'efficientnetb4_001' -c 'epoch=30, mixup, noise'
 # python train.py -m 'efficientnetb4_002' -c 'epoch=30, mixup, noise, seed=2021'
 # python train.py -m 'efficientnetb4_003' -c 'epoch=30, mixup, noise, water_noise, shift'
